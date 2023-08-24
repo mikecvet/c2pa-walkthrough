@@ -24,7 +24,7 @@ This is a simple walkthrough of the C2PA Rust SDK from [contentauth/c2pa-rs](htt
                 "format": "image/jpeg",
                 "instance_id": "xmp:iid:2341e08c-4482-42a3-9eea-558696ba94e2",
 
-    [ ... ]
+    [ ... ] // Many other details
 
     "assertions": [
         {
