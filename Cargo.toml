@@ -1,0 +1,13 @@
+[package]
+name = "c2pa-walkthrough"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+c2pa = {version="0.25.2", features=["file_io"]}
+chrono = "0.4.26"
+clap = "4.2.7"
+regex = "1.9.3"
+serde = "1.0.183"
