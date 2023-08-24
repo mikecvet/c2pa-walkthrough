@@ -16,35 +16,35 @@ This is a simple walkthrough of the C2PA Rust SDK from [contentauth/c2pa-rs](htt
     [ ... ]
 
     "assertions": [
-    {
-        "label": "c2pa.actions",
-        "data": {
-            "actions": [
-              {
-                "action": "c2pa.opened",
-                "parameters": {
-                    "identifier": "xmp:iid:4af197dd-7b85-4cbe-ab93-c2d124a90b4c"
+        {
+            "label": "c2pa.actions",
+            "data": {
+                "actions": [
+                {
+                    "action": "c2pa.opened",
+                    "parameters": {
+                        "identifier": "xmp:iid:4af197dd-7b85-4cbe-ab93-c2d124a90b4c"
+                    },
+                    "reason": "editing",
+                    "softwareAgent": "mikes-c2pa-test-code/0.1",
+                    "when": "2023-08-24T03:20:16.857741+00:00"
                 },
-                "reason": "editing",
-                "softwareAgent": "mikes-c2pa-test-code/0.1",
-                "when": "2023-08-24T03:20:16.857741+00:00"
-              },
-          {
-            "action": "c2pa.cropped",
-            "digitalSourceType": "https://cv.iptc.org/newscodes/digitalsourcetype/minorHumanEdits",
-            "parameters": {
-              "identifier": "xmp:iid:4af197dd-7b85-4cbe-ab93-c2d124a90b4c"
-            },
-            "softwareAgent": "mikes-c2pa-test-code/0.1",
-            "when": "2023-08-24T03:20:16.857741+00:00"
-          }
-        ]
-      }
-    }
-  ],
-  "signature_info": {
-    "issuer": "C2PA Test Signing Cert",
-    "cert_serial_number": "720724073027128164015125666832722375746636448153"
-  },
-  "label": "urn:uuid:af72af31-6201-44c2-b506-8875ed22c788"
+                {
+                    "action": "c2pa.cropped",
+                    "digitalSourceType": "https://cv.iptc.org/newscodes/digitalsourcetype/minorHumanEdits",
+                    "parameters": {
+                        "identifier": "xmp:iid:4af197dd-7b85-4cbe-ab93-c2d124a90b4c"
+                    },
+                    "softwareAgent": "mikes-c2pa-test-code/0.1",
+                    "when": "2023-08-24T03:20:16.857741+00:00"
+                }
+                ]
+            }
+        }
+    ],
+    "signature_info": {
+        "issuer": "C2PA Test Signing Cert",
+        "cert_serial_number": "720724073027128164015125666832722375746636448153"
+    },
+    "label": "urn:uuid:af72af31-6201-44c2-b506-8875ed22c788"
 }
