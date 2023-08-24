@@ -76,6 +76,7 @@ create_new_manifest (src_path: &String, dest_path: &String) -> Result<(), c2pa::
         }"#,
     ).expect("exif");
 
+    // This is a verified credential string; see https://www.w3.org/TR/vc-data-model
     let vc = r#"{
         "@context": [
             "https://www.w3.org/2018/credentials/v1",
@@ -114,7 +115,7 @@ create_new_manifest (src_path: &String, dest_path: &String) -> Result<(), c2pa::
     manifest.add_labeled_assertion("org.contentauth.test", &MediaData::new(128, 256, "descriptive string".to_string()))?;
 
     // For some reason, this causes manifest embedding to fail. AFAICT this is a valid formatting for verified credentials, pulled
-    // from SDK test code.
+    // from SDK test code. 
     // manifest.add_verifiable_credential(&vc.to_string())?;
 
     let source = PathBuf::from(src_path);
@@ -206,6 +207,9 @@ read_manifest (path: &String) -> Result<(), c2pa::Error> {
 
 fn 
 main() {
+
+    // By default, just run with --path test_file.jpg
+
     let matches = Command::new("c2pa-walkthrough")
     .version("0.1")
     .about("learning the c2pa-rs SDK")
@@ -219,7 +223,8 @@ main() {
             let file_path_regex = Regex::new(r"(.+)\.([a-zA-Z]+)").unwrap();
             let captures = file_path_regex.captures(&file_path).unwrap();
 
-            // filename prefix
+            // filename prefix; output media files (with added manifests) to to a new file with a suffix added.
+            // For exmaple, destination file would be "test_file_c2pa.jpg" given an input of "test_file.jpg"
             let mut file_with_manifest = captures.get(1).unwrap().as_str().to_owned();
 
             // suffix for output file
