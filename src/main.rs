@@ -147,7 +147,8 @@ edit_media_with_action (src_path: &String, dest_path: &String, action: &str) -> 
     let actions = Actions::new()
         .add_action(
             Action::new(c2pa_action::OPENED)
-                .set_parameter("identifier", parent.instance_id().to_owned()).expect("set id")
+                .set_parameter("identifier", parent.instance_id().to_owned())
+                .expect("set identifier")
                 .set_reason("editing")
                 .set_software_agent("mikes-c2pa-test-code/0.1")
                 .set_when(now_string.clone())
@@ -155,7 +156,8 @@ edit_media_with_action (src_path: &String, dest_path: &String, action: &str) -> 
         .add_action(
             Action::new(action)
                 .set_parameter("identifier", parent.instance_id().to_owned())
-                .expect("set cropped")
+                .expect("set identifier")
+                .set_reason("editing")
                 .set_source_type("https://cv.iptc.org/newscodes/digitalsourcetype/minorHumanEdits".to_owned())
                 .set_software_agent("mikes-c2pa-test-code/0.1")
                 .set_when(now_string.clone())
