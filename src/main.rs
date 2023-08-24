@@ -210,18 +210,22 @@ read_manifest (path: &String) -> Result<(), c2pa::Error> {
 fn 
 main() {
 
-    // By default, just run with --path test_file.jpg
+    // By default, just run with --add test_file.jpg
+    //   This adds a manifest to an output file test_file_c2pa.jpg
+    // Read the contents of a file with a c2pa manifest via --read filename_c2pa.jpg
 
     let matches = Command::new("c2pa-walkthrough")
     .version("0.1")
     .about("learning the c2pa-rs SDK")
-    .arg(arg!(--path <VALUE>).required(false))
+    .arg(arg!(--add <VALUE>).required(false).help("adds a c2pa manifest to a media file, displays the contents afterwards"))
+    .arg(arg!(--read <VALUE>).required(false).help("prints the c2pa manifest contents of a media file; fails if no manifest is present"))
     .get_matches();
 
-    let path = matches.get_one::<String>("path");
+    let add_path = matches.get_one::<String>("add");
+    let read_path = matches.get_one::<String>("read");
 
-    match path {
-        Some(file_path) => {
+    match (add_path, read_path) {
+        (Some(file_path), read_path_opt) => {
             let file_path_regex = Regex::new(r"(.+)\.([a-zA-Z]+)").unwrap();
             let captures = file_path_regex.captures(&file_path).unwrap();
 
@@ -253,9 +257,17 @@ main() {
                 (_, Err(e), _) => panic!("filtering edit failed with {}", e),
                 (_, _, Err(e)) => panic!("color adjustment edit failed with {}", e),
             };
+
+            match read_path_opt {
+                Some(read_path) => read_manifest(&read_path).expect("manifest should be printed to stdout"),
+                _ => ()
+            }
         }
-        _ => {
-            println!("provide a path to a media file via --path <arg>");
+        (None, Some(file_path)) => {
+            read_manifest(&file_path).expect("manifest should be printed to stdout; perhaps no c2pa manifest is present?");
+        }
+        (None, None) => {
+            println!("provide a path to a media file via --add <path> or --read <path>");
         }
     }
 }
