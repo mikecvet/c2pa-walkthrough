@@ -2,6 +2,8 @@
 
 This is a simple walkthrough of the C2PA Rust SDK from [contentauth/c2pa-rs](https://github.com/contentauth/c2pa-rs). It demonstrates the creation of a new media manifest, the addition of new assertions, the import of earlier manifests as ingredients, and the testing of `ManifestStore` validation statuses during the loading of media.
 
+This code is discussed in [this blog post](https://mikecvet.medium.com/verifying-the-origin-of-media-in-an-algorithmic-world-25bff92ab572).
+
     ~>> ./target/release/c2pa-walkthrough --help
     learning the c2pa-rs SDK
 
